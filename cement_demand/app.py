@@ -13,4 +13,4 @@ if st.button('Predict'):
     result = predict_demand(production, sales, gdp, disbusment)
     st.success('The demand is {}'.format(result))
 
-st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')c
+st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')
