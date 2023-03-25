@@ -2,8 +2,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
-url = 'https://github.com/sid-almeida/datascience/blob/main/cement_demand_model/Demand2121.csv'
-data = pd.read_csv(url, index_col=0)
+data = pd.read_csv('Demand2121.csv')
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
