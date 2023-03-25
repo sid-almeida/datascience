@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
+
+drive_url = 'https://drive.google.com/file/d/1Xxt-yL4pOwzGo-rAJv4d7e6N7NF71rMM/view?usp=share_link'
 # carreguei o dataset do excel
-data = pd.read_excel('Book1.xlsx')
+data = pd.read_csv(drive_url)
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
