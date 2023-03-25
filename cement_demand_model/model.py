@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
-data = pd.read_csv('Demand2121.csv')
+@st.cache.data
+data = pd.read_csv("demand.csv")
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -17,6 +18,7 @@ data_model.fit(X_train, y_train)
 
 y_pred = data_model.predict(X_test)
 
+@st.cache.data
 def predict_demand(production, sales, gdp, disbusment):
     x = np.zeros(len(X.columns))
     x[0] = production
