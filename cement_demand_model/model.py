@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
-@st.cache.data
 data = pd.read_csv("demand.csv")
 
 from sklearn.model_selection import train_test_split
