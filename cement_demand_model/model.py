@@ -28,7 +28,7 @@ def predict_demand(production, sales, gdp, disbursement):
     return data_model.predict([x])[0]
 
 st.title('Cement Demand Prediction')
-st.write('This is a simple app to predict cement demand in the US')
+st.write('This is a simple app to predict cement demand for an indian Company')
 
 production = st.number_input('Production', min_value=0.0, max_value=100000.0, value=0.0)
 sales = st.number_input('Sales', min_value=0.0, max_value=100000.0, value=0.0)
