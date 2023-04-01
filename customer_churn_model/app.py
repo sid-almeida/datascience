@@ -43,20 +43,20 @@ def churn_prediction(account_weeks, cust_serv_calls, day_mins, day_calls, monthl
     else:
         st.write('O cliente não irá cancelar o serviço')
 
-st.title('Client Churn Prediction')
-st.write('This is a simple app to predict the churn of clients for a Telecom company')
+st.title('Previsão de Churn dos Clientes')
+st.write('Este é um aplicativo simples que utiliza Machine-Learning para Prever o Churn de Clientes')
 
-account_weeks = st.number_input('Account Weeks', min_value=0, max_value=1000, value=0)
-cust_serv_calls = st.number_input('Customer Service Calls', min_value=0, max_value=10, value=0)
-day_mins = st.number_input('Day Minutes', min_value=0, max_value=1000, value=0)
-day_calls = st.number_input('Day Calls', min_value=0, max_value=1000, value=0)
-monthly_charge = st.number_input('Monthly Charge', min_value=0, max_value=1000, value=0)
-overage_fee = st.number_input('Overage Fee', min_value=0, max_value=1000, value=0)
-roam_mins = st.number_input('Roaming Minutes', min_value=0, max_value=1000, value=0)
+account_weeks = st.number_input('Tempo no Serviço (Semanas)', min_value=0, max_value=1000, value=0)
+cust_serv_calls = st.number_input('Ligações SAC', min_value=0, max_value=10, value=0)
+day_mins = st.number_input('Minutos de ligação / Dia', min_value=0, max_value=1000, value=0)
+day_calls = st.number_input('Ligações / Dia', min_value=0, max_value=1000, value=0)
+monthly_charge = st.number_input('Mensalidade', min_value=0, max_value=1000, value=0)
+overage_fee = st.number_input('Taxa de Excesso', min_value=0, max_value=1000, value=0)
+roam_mins = st.number_input('Minutos Fora de Área', min_value=0, max_value=1000, value=0)
 
-if st.button('Predict'):
+if st.button('Prever'):
     churn_prediction(account_weeks, cust_serv_calls, day_mins, day_calls, monthly_charge, overage_fee, roam_mins)
 else:
-    st.write('Press the button to predict')
+    st.write('Pressione o Botão Para Prever')
 
 st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')
