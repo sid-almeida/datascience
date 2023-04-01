@@ -6,8 +6,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, classification_report
 
+link = 'https://raw.githubusercontent.com/sid-almeida/datascience/main/customer_churn_model/churn_model.csv'
+
 # Carreguei os dados
-data_model = pd.read_csv('churn_model.csv')
+data_model = pd.read_csv(link)
 
 # Dividi os dados em treino e teste
 X = data_model.drop('churn', axis=1)
