@@ -6,7 +6,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import streamlit as st
 
 # Load the data
-data_model = pd.read_csv('data_model.csv')
+data_model = pd.read_csv('https://raw.githubusercontent.com/sid-almeida/datascience/main/students_performance_prediction/data_model.csv')
 
 # Split the data into X and y
 X = data_model.drop('final_score', axis=1)
