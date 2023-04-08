@@ -3,7 +3,8 @@ import numpy as np
 import streamlit as st
 
 # Importei o dataset
-data = pd.read_csv('data_model.csv')
+url = 'https://raw.githubusercontent.com/sid-almeida/datascience/main/heart_failure_mortality_prediction/data_model.csv'
+data = pd.read_csv(url)
 
 # Dividi o dataset em variáveis independentes e variável dependente
 X = data.drop('morte', axis=1)
