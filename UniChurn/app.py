@@ -41,8 +41,6 @@ if choice == "Análise":
             st.balloons()
         else:
             st.warning("Por favor, faça o upload do arquivo .csv.")
-    else:
-        st.warning("Por favor, faça o upload do arquivo .csv.")
 
 if choice == "Machine Learning":
     dataframe = pd.read_csv("data.csv")
