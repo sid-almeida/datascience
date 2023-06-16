@@ -4,7 +4,8 @@ import os
 import sweetviz as sv
 
 with st.sidebar:
-    st.image("Brainize Tech(1).png", width=250)
+    imglink = 'https://github.com/sid-almeida/datascience/blob/main/UniChurn/Brainize%20Tech(1).png?raw=true'
+    st.image(imglink, width=250)
     st.title("UniChurn")
     choice = st.radio("**Navegação:**", ("Upload", "Análise", "Machine Learning", "Previsão"))
     st.info("Esta aplicação permite a análise de dados de uma universidade fictícia, com o objetivo de prever a evasão de alunos."
