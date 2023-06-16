@@ -34,13 +34,11 @@ if choice == "Análise":
     st.header("Análise de dados")
     st.subheader("Análise exploratória dos dados com pandas-profiling.")
     dataframe = pd.read_csv("data.csv")
-    if dataframe is not None:
-        report = sv.analyze(dataframe)
-        st.write(report.show_html(), unsafe_allow_html=True)
-        st.success("Análise realizada com sucesso!")
-        st.balloons()
-    else:
-        st.warning("Por favor, faça o upload do arquivo .csv.")
+    report = sv.analyze(dataframe)
+    st.write(report.show_html(), unsafe_allow_html=True)
+    st.success("Análise realizada com sucesso!")
+    st.balloons()
+   
 
 if choice == "Machine Learning":
     dataframe = pd.read_csv("data.csv")
