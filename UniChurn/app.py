@@ -183,6 +183,7 @@ if choice == "Previsão":
             "9 - Gestão 10 - Serviço Social 11 - Turismo 12 - Enfermagem 13 - Higiene Oral 14 - Publicidade "
             "15 - Jornalismo e Comunicação 16 - Letras 17 - Administração de Empresas")
     turno = st.selectbox("Turno", (0, 1))
+    st.indo("0 - Noturno 1 - Diurno")
     qualificacao_previa = st.selectbox("Qualificação prévia", (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))
     st.info("1 - Educação secundária 2 - Ensino superior - bacharelado 3 - Ensino superior - licenciatura "
             "4 - Ensino superior - mestrado 5 - Ensino superior - doutorado 6 - Frequência de ensino superior "
