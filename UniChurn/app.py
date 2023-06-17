@@ -210,9 +210,9 @@ if choice == "Previsão":
     aproveitamentos = st.number_input("Aproveitamentos", min_value=0, max_value=100, value=0, step=1)
     matriculas = st.number_input("Turmas matriculadas", min_value=0.0, max_value=100.0, value=0.0, step=1.0)
     media = st.number_input("Média anual", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
-    indice_desemprego = st.number_input("Índice de desemprego", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
-    indice_inflacao = st.number_input("Índice de inflação", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
-    PIB = st.number_input("PIB", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
+    indice_desemprego = st.number_input("Índice de desemprego %", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
+    indice_inflacao = st.number_input("Índice de inflação %", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
+    PIB = st.number_input("PIB (Trilhões $)", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
 
  
 
