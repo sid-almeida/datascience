@@ -11,7 +11,8 @@ def st_display_sweetviz(report_html,width=1000,height=500):
     components.html(page,width=width,height=height,scrolling=True)
 
 with st.sidebar:
-    # st.image("Brainize Tech(1).png", width=250)
+    imglink = 'https://github.com/sid-almeida/datascience/blob/52534c11a83a2c2d0add00ecaec429fa1460e83c/UniChurn/Brainize%20Tech(1).png'
+    st.image(imglink, width=250)
     st.title("UniChurn")
     choice = st.radio("**Navegação:**", ("Upload", "Análise", "Machine Learning", "Previsão"))
     st.info("Esta aplicação permite a análise de dados de uma universidade fictícia, com o objetivo de prever a evasão de alunos."
