@@ -11,7 +11,7 @@ def st_display_sweetviz(report_html,width=1000,height=500):
     components.html(page,width=width,height=height,scrolling=True)
 
 with st.sidebar:
-    imglink = 'https://github.com/sid-almeida/datascience/blob/52534c11a83a2c2d0add00ecaec429fa1460e83c/UniChurn/Brainize%20Tech(1).png'
+    imglink = 'https://github.com/sid-almeida/datascience/blob/main/UniChurn/Brainize%20Tech(1).png?raw=true'
     st.image(imglink, width=250)
     st.title("UniChurn")
     choice = st.radio("**Navegação:**", ("Upload", "Análise", "Machine Learning", "Previsão"))
