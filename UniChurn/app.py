@@ -14,7 +14,7 @@ with st.sidebar:
     imglink = 'https://github.com/sid-almeida/datascience/blob/main/UniChurn/Brainize%20Tech(1).png?raw=true'
     st.image(imglink, width=250)
     st.title("UniChurn")
-    choice = st.radio("**Navegação:**", ("Upload", "Análise", "Machine Learning", "Previsão"))
+    choice = st.radio("**Navegação:**", ("Upload", "Análise", "Machine Learning", "Previsão", "Previsão de Conjunto de Dados"))
     st.info("Esta aplicação permite a análise de dados de uma universidade fictícia, com o objetivo de prever a evasão de alunos."
             " Além disso, ela utiliza Machine Learning para prever o estado futuro de alunos.")
 
@@ -253,4 +253,34 @@ if choice == "Previsão":
             st.write("Probabilidade de evasão: ", prob[0][1])
             # % de chance de não se formar
             st.write("Chance de evasão: ", prob[0][1]*100, "%")
+
+if choice == "Previsão de Conjunto de Dados":
+    st.header("Previsão de Conjunto de Dados em CSV")
+    st.subheader("Faça o upload do arquivo CSV")
+    st.info("O arquivo deve conter as colunas: curso, turno, qualificacao_previa, "
+            "nacionalidade, necessidades_especiais, mensalidade_em_dia, sexo, bolsista, "
+            "aprovacoes, aproveitamentos, matriculas, media, indice_desemprego, "
+            "indice_inflacao, PIB")
+    data_conj = st.file_uploader("Upload CSV", type=["csv"])
+    if data_conj is not None:
+        df = pd.read_csv(data_conj)
+        st.dataframe(df.head())
+        st.subheader("Selecione as colunas alvo")
+        colunas = df.columns.tolist()
+        colunas_selecionadas = st.multiselect("Colunas", colunas)
+        st.info("Selecione as colunas para prever a evasão dos alunos")
+        if st.button("Prever"):
+            import pickle
+            model = pickle.load(open("model.pkl", "rb"))
+            prediction = model.predict(df[colunas_selecionadas])
+            df["Previsão"] = prediction
+            st.dataframe(df.head())
+            #botão para download do arquivo csv
+            if st.button("Download CSV (Previsão)"):
+                df.to_csv("previsao.csv", index=False)
+                st.success("Arquivo baixado com sucesso")
+                st.balloons()
+    else:
+        st.warning("Por favor, faça o upload do arquivo CSV para realização das previsões!")
+        
 st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')
