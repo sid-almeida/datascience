@@ -111,7 +111,7 @@ if choice == "Machine Learning":
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.subheader("**Avaliação do Modelo**")
-            st.write("Acurácia:", accuracy_score(y_test, y_pred)*100"%")
+            st.write("Acurácia:", accuracy_score(y_test, y_pred)*100,"%")
             st.success("Modelo treinado com sucesso!")
         # botão para salvar o modelo
         st.button("Salvar modelo")
@@ -137,7 +137,7 @@ if choice == "Machine Learning":
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.subheader("**Avaliação do Modelo**")
-            st.write("Acurácia:", accuracy_score(y_test, y_pred)*100"%")
+            st.write("Acurácia:", accuracy_score(y_test, y_pred)*100,"%")
             st.success("Modelo treinado com sucesso!")
         # botão para salvar o modelo
         st.button("Salvar modelo")
@@ -163,7 +163,7 @@ if choice == "Machine Learning":
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.subheader("**Avaliação do Modelo**")
-            st.write("Acurácia:", accuracy_score(y_test, y_pred)*100"%")
+            st.write("Acurácia:", accuracy_score(y_test, y_pred)*100,"%")
             st.success("Modelo treinado com sucesso!")
         # botão para salvar o modelo
         st.button("Salvar modelo")
