@@ -276,8 +276,9 @@ if choice == "Previsão de Conjunto de Dados":
             st.dataframe(dfp)
             result = dfp
             #botão para download do arquivo csv com as previsões para a pasta Downloads
-            st.download_button(label="Download CSV (Previsão)", data=result)
-                st.success("O arquivo foi baixado com sucesso!")
+            if st.download_button(label="Download CSV", data=dfp.to_csv(), file_name="previsoes.csv", mime="text/csv"):
+                st.success("Download realizado com sucesso!")
+                st.balloons()
     else:
         st.warning("Por favor, faça o upload do arquivo CSV para realização das previsões!")
         
