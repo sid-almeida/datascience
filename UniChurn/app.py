@@ -263,7 +263,7 @@ if choice == "Previsão de Conjunto de Dados":
             "indice_inflacao, PIB")
     data_conj = st.file_uploader("Upload CSV", type=["csv"])
     if data_conj is not None:
-        df = pd.read_csv(data_conj)
+        df = pd.read_csv(data_conj, index_col=0)
         st.dataframe(df.head())
         st.subheader("Selecione as colunas alvo")
         colunas = df.columns.tolist()
