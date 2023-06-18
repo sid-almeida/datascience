@@ -235,7 +235,7 @@ if choice == "Previsão":
                                    indice_inflacao, 
                                    PIB]])
         if prediction == 0:
-            st.subheader("O aluno tem **grandes** chances de se evasão")
+            st.subheader("O aluno tem **grandes** chances de evasão")
             #probabilidade de evadir
             prob = model.predict_proba([[curso, turno, qualificacao_previa, nacionalidade, necessidades_especiais,
                                      mensalidade_em_dia, sexo, bolsista, aprovacoes, aproveitamentos, matriculas,
@@ -244,7 +244,7 @@ if choice == "Previsão":
             st.write("Probabilidade de evasão: ", prob[0][0]*100, "%")
 
         else:
-            st.subheader("O aluno tem grandes chances de concluir o curso")
+            st.subheader("O aluno tem grandes chances de **concluir** o curso")
             #probabilidade de se formar
             prob = model.predict_proba([[curso, turno, qualificacao_previa, nacionalidade, necessidades_especiais,
                                      mensalidade_em_dia, sexo, bolsista, aprovacoes, aproveitamentos, matriculas,
