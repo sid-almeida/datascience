@@ -173,7 +173,7 @@ if choice == "Machine Learning":
             st.success("Modelo salvo com sucesso!")
             st.balloons()
         # botão para fazer download do modelo pkl
-        if st.download_button(label="Download do modelo", data=model, mime="application/octet-stream"):
+        if st.download_button(label="Download do modelo", data="model.pkl", mime="application/octet-stream"):
             st.success("Download concluído com sucesso!")
 
 
