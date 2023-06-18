@@ -274,9 +274,9 @@ if choice == "Previsão de Conjunto de Dados":
             dfp["Previsão"] = prediction
             dfp["Probabilidade de Sucesso (%)"] = prob[:,1] * 100
             st.dataframe(dfp)
+            result = dfp
             #botão para download do arquivo csv com as previsões para a pasta Downloads
-            if st.button("Download CSV (Previsão)"):
-                dfp.to_csv("Downloads/Previsão.csv", index=False)
+            if st.download_button(label="Download CSV (Previsão)", data=result):
                 st.success("O arquivo foi baixado com sucesso!")
     else:
         st.warning("Por favor, faça o upload do arquivo CSV para realização das previsões!")
