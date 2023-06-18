@@ -79,7 +79,7 @@ if choice == "Machine Learning":
                 X = dataframe.drop(alvo, axis=1)
                 y = dataframe[alvo]
                 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-                model = LinearRegression(max_iter=1000)
+                model = LinearRegression()
                 model.fit(X_train, y_train)
                 y_pred = model.predict(X_test)
                 st.subheader("**Avaliação do Modelo**")
@@ -107,7 +107,7 @@ if choice == "Machine Learning":
             X = dataframe.drop(alvo, axis=1)
             y = dataframe[alvo]
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            model = LogisticRegression(max_iter=1000)
+            model = LogisticRegression()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.subheader("**Avaliação do Modelo**")
@@ -133,7 +133,7 @@ if choice == "Machine Learning":
             X = dataframe.drop(alvo, axis=1)
             y = dataframe[alvo]
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            model = RandomForestClassifier(max_iter=1000)
+            model = RandomForestClassifier()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.subheader("**Avaliação do Modelo**")
@@ -159,7 +159,7 @@ if choice == "Machine Learning":
             X = dataframe.drop(alvo, axis=1)
             y = dataframe[alvo]
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            model = XGBClassifier(max_iter=1000)
+            model = XGBClassifier()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.subheader("**Avaliação do Modelo**")
