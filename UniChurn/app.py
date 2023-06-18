@@ -266,9 +266,6 @@ if choice == "Previsão de Conjunto de Dados":
         st.subheader("Selecione as colunas alvo")
         colunas_selecionadas = st.multiselect("Colunas", dfp.columns)
         st.info("Selecione as colunas para prever a evasão dos alunos")
-        if st.button("Utilizar tudo"):
-            colunas_selecionadas = dfp.columns
-            st.info("Todas as colunas serão utilizadas para previsão.")
         if st.button("Prever"):
             import pickle
             model = pickle.load(open("model.pkl", "rb"))
