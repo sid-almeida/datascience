@@ -260,26 +260,24 @@ if choice == "Previsão de Conjunto de Dados":
     st.info("O arquivo deve conter as colunas: curso, turno, qualificacao_previa, "
             "nacionalidade, necessidades_especiais, mensalidade_em_dia, sexo, bolsista, "
             "aprovacoes, aproveitamentos, matriculas, media, indice_desemprego, "
-            "indice_inflacao, PIB")
+            "indice_inflacao, PIB e a ordem das colunas deve ser a mesma do treino.")
     data_conj = st.file_uploader("Upload CSV", type=["csv"])
     if data_conj is not None:
-        df = pd.read_csv(data_conj, index_col=0)
-        st.dataframe(df.head())
+        dfp = pd.read_csv(data_conj)
+        st.dataframe(dfp.head())
         st.subheader("Selecione as colunas alvo")
-        colunas = df.columns.tolist()
-        colunas_selecionadas = st.multiselect("Colunas", colunas)
+        colunas_selecionadas = st.multiselect("Colunas", dfp.columns)
         st.info("Selecione as colunas para prever a evasão dos alunos")
         if st.button("Prever"):
             import pickle
             model = pickle.load(open("model.pkl", "rb"))
-            prediction = model.predict(df[colunas_selecionadas])
-            df["Previsão"] = prediction
-            st.dataframe(df.head())
-            #botão para download do arquivo csv
+            prediction = model.predict(dfp[colunas_selecionadas])
+            dfp["Previsão"] = prediction
+            st.dataframe(dfp)
+            #botão para download do arquivo csv com as previsões para a pasta Downloads
             if st.button("Download CSV (Previsão)"):
-                df.to_csv("previsao.csv", index=False)
-                st.success("Arquivo baixado com sucesso")
-                st.balloons()
+                dfp.to_csv("Downloads/Previsão.csv", index=False)
+                st.success("O arquivo foi baixado com sucesso!")
     else:
         st.warning("Por favor, faça o upload do arquivo CSV para realização das previsões!")
         
