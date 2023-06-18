@@ -274,7 +274,7 @@ if choice == "Previsão de Conjunto de Dados":
             prediction = model.predict(dfp[colunas_selecionadas])
             prob = model.predict_proba(dfp[colunas_selecionadas])
             dfp["Previsão"] = prediction
-            dfp["Probabilidade de evasão"] = prob[:, 1]
+            dfp["Probabilidade de evasão (%)"] = prob[:, 1] * 100
             st.dataframe(dfp)
             #botão para download do arquivo csv com as previsões para a pasta Downloads
             if st.button("Download CSV (Previsão)"):
