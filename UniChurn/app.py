@@ -120,10 +120,6 @@ if choice == "Machine Learning":
             pickle.dump(model, open("model.pkl", "wb"))
             st.success("Modelo salvo com sucesso!")
             st.balloons()
-        # botão para fazer download do modelo pkl
-        if st.download_button(label="Download do modelo", data=pickle.dump(model)):
-            st.success("Download concluído com sucesso!")
-            st.balloons()
             
     elif modelo == "Random Forest":
         # selectbox para selecionar o alvo
