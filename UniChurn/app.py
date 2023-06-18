@@ -263,7 +263,7 @@ if choice == "Previsão de Conjunto de Dados":
             "indice_inflacao, PIB e a ordem das colunas deve ser a mesma do treino.")
     data_conj = st.file_uploader("Upload CSV", type=["csv"])
     if data_conj is not None:
-        dfp = pd.read_csv(data_conj)
+        dfp = pd.read_csv(data_conj, index_col=0)
         st.dataframe(dfp.head())
         st.subheader("Selecione as colunas alvo")
         colunas_selecionadas = st.multiselect("Colunas", dfp.columns)
