@@ -235,24 +235,22 @@ if choice == "Previsão":
                                    indice_inflacao, 
                                    PIB]])
         if prediction == 0:
-            st.subheader("O aluno tem **grandes** chances de se formar curso")
+            st.subheader("O aluno tem **grandes** chances de se evasão")
+            #probabilidade de evadir
+            prob = model.predict_proba([[curso, turno, qualificacao_previa, nacionalidade, necessidades_especiais,
+                                     mensalidade_em_dia, sexo, bolsista, aprovacoes, aproveitamentos, matriculas,
+                                     media, indice_desemprego, indice_inflacao, PIB]])
+            # % de chance de evadir
+            st.write("Probabilidade de evasão: ", prob[0][0]*100, "%")
+
+        else:
+            st.subheader("O aluno tem grandes chances de concluir o curso")
             #probabilidade de se formar
             prob = model.predict_proba([[curso, turno, qualificacao_previa, nacionalidade, necessidades_especiais,
                                      mensalidade_em_dia, sexo, bolsista, aprovacoes, aproveitamentos, matriculas,
                                      media, indice_desemprego, indice_inflacao, PIB]])
-            st.write("Probabilidade de se formar: ", prob[0][0])
             # % de chance de se formar
-            st.write("Chance de se formar: ", prob[0][0]*100, "%")
-
-        else:
-            st.subheader("O aluno tem grandes chances de **não** se formar no curso")
-            #probabilidade de não se formar
-            prob = model.predict_proba([[curso, turno, qualificacao_previa, nacionalidade, necessidades_especiais,
-                                     mensalidade_em_dia, sexo, bolsista, aprovacoes, aproveitamentos, matriculas,
-                                     media, indice_desemprego, indice_inflacao, PIB]])
-            st.write("Probabilidade de evasão: ", prob[0][1])
-            # % de chance de não se formar
-            st.write("Chance de evasão: ", prob[0][1]*100, "%")
+            st.write("Probabilidade de sucesso: ", prob[0][1]*100, "%")
 
 if choice == "Previsão de Conjunto de Dados":
     st.header("Previsão de Conjunto de Dados em CSV")
@@ -274,7 +272,7 @@ if choice == "Previsão de Conjunto de Dados":
             prediction = model.predict(dfp[colunas_selecionadas])
             prob = model.predict_proba(dfp[colunas_selecionadas])
             dfp["Previsão"] = prediction
-            dfp["Probabilidade de Sucesso (%)"] = prob[0: 1] * 100
+            dfp["Probabilidade de Sucesso (%)"] = prob[:,1] * 100
             st.dataframe(dfp)
             #botão para download do arquivo csv com as previsões para a pasta Downloads
             if st.button("Download CSV (Previsão)"):
