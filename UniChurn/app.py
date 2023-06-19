@@ -14,7 +14,7 @@ with st.sidebar:
     imglink = 'https://github.com/sid-almeida/datascience/blob/main/UniChurn/Brainize%20Tech(1).png?raw=true'
     st.image(imglink, width=250)
     st.title("UniChurn")
-    choice = st.radio("**Navegação:**", ("Upload", "Análise", "Machine Learning", "Previsão", "Previsão de Conjunto de Dados"))
+    choice = st.radio("**Navegação:**", (" ", "Upload", "Análise", "Machine Learning", "Previsão", "Previsão de Conjunto de Dados"))
     st.info("Esta aplicação permite a análise de dados de uma universidade fictícia, com o objetivo de prever a evasão de alunos."
             " Além disso, ela utiliza Machine Learning para prever o estado futuro de alunos.")
 
@@ -64,7 +64,7 @@ if choice == "Machine Learning":
     if problema == "Classificação":
         modelo = st.selectbox("Selecione o modelo:", ("Logistic Regression", "Random Forest", "XGBoost"))
     if problema == "Regressão":
-        modelo = st.selectbox("Selecione o modelo:", ("Linear Regression", "Random Forest", "XGBoost"))
+        modelo = st.selectbox("Selecione o modelo:", (" ", "Linear Regression", "Random Forest", "XGBoost"))
         if modelo == "Linear Regression":
             st.warning("AVISO: Este modelo não é adequado para o problema de classificação!")
             # selectbox para selecionar o alvo
@@ -93,6 +93,14 @@ if choice == "Machine Learning":
                 pickle.dump(model, open("model.pkl", "wb"))
                 st.success("Modelo salvo com sucesso!")
                 st.balloons()
+    if modelo == " ":
+        st.warning("Por favor, selecione um modelo.")
+    if modelo == "Logistic Regression":
+        st.warning("Por favor, selecione um modelo.")
+    if modelo == "Random Forest":
+        st.warning("Por favor, selecione um modelo.")
+    if modelo == "XGBoost":
+        st.warning("Por favor, selecione um modelo.")
     if modelo == "Logistic Regression":
         st.warning("Este modelo não é adequado para o problema de regressão.")
         # selectbox para selecionar o alvo
@@ -281,5 +289,28 @@ if choice == "Previsão de Conjunto de Dados":
                 st.balloons()
     else:
         st.warning("Por favor, faça o upload do arquivo CSV para realização das previsões!")
+
+if choice == " ":
+    st.title("Selecione uma Opção no Menu à Esquerda")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.subheader("Obrigado por utilizar o nosso sistema! \u2764 ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write("             ")
+    st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')
         
 st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')
