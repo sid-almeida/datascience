@@ -292,7 +292,7 @@ if choice == "Previsão de Conjunto de Dados":
 
 if choice == "Início":
     st.title("Selecione uma Opção no Menu de navegação.")
-    st.title("\u2190")
+    st.title("\u27F5")
     st.write("             ")
     st.write("             ")
     st.write("             ")
