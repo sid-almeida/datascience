@@ -51,7 +51,7 @@ if choice == "Análise":
                 html_file.write(report._page_html)
             st_display_sweetviz("SWEETVIZ_REPORT.html")
             st.balloons()
-        else:
+        elif dataframe is None:
             st.warning("Por favor, faça o upload do arquivo .csv.")
     else:
         st.warning("Por favor, faça o upload do arquivo .csv.")
