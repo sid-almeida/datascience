@@ -202,7 +202,7 @@ if choice == "Previsão":
     st.info("0 - Não 1 - Sim")
     mensalidade_em_dia = st.selectbox("Mensalidade em dia", (0, 1))
     st.info("0 - Não 1 - Sim")
-    sexo = st.selectbox("Sexi", (0, 1))
+    sexo = st.selectbox("Sexo", (0, 1))
     st.info("0 - Mulher 1 - Homem")
     bolsista = st.selectbox("Bolsista", (0, 1))
     st.info("0 - Não 1 - Sim")
