@@ -14,7 +14,7 @@ with st.sidebar:
     imglink = 'https://github.com/sid-almeida/datascience/blob/main/UniChurn/Brainize%20Tech(1).png?raw=true'
     st.image(imglink, width=250)
     st.title("UniChurn")
-    choice = st.radio("**Navegação:**", (" ", "Upload", "Análise", "Machine Learning", "Previsão", "Previsão de Conjunto de Dados"))
+    choice = st.radio("**Navegação:**", ("Início", "Upload", "Análise", "Machine Learning", "Previsão", "Previsão de Conjunto de Dados"))
     st.info("Esta aplicação permite a análise de dados de uma universidade fictícia, com o objetivo de prever a evasão de alunos."
             " Além disso, ela utiliza Machine Learning para prever o estado futuro de alunos.")
 
@@ -290,7 +290,7 @@ if choice == "Previsão de Conjunto de Dados":
     else:
         st.warning("Por favor, faça o upload do arquivo CSV para realização das previsões!")
 
-if choice == " ":
+if choice == "Início":
     st.title("Selecione uma Opção no Menu à Esquerda")
     st.write("             ")
     st.write("             ")
