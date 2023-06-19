@@ -311,6 +311,5 @@ if choice == "Início":
     st.write("             ")
     st.write("             ")
     st.write("             ")
-    st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')
         
 st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')
