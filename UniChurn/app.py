@@ -60,7 +60,7 @@ if choice == "Machine Learning":
     dataframe = pd.read_csv("data.csv")
     st.header("Treino de modelos de Machine Learning")
     st.subheader("Treino de modelos de Machine Learning para prever a evasão de alunos.")
-    problema = st.selectbox("Selecione o problema:", (" ", "Classificação", "Regressão"))
+    problema = st.selectbox("Selecione o problema:", ("Classificação", "Regressão"))
     if problema == "Classificação":
         modelo = st.selectbox("Selecione o modelo:", ("Logistic Regression", "Random Forest", "XGBoost"))
     if problema == "Regressão":
