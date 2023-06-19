@@ -291,7 +291,8 @@ if choice == "Previsão de Conjunto de Dados":
         st.warning("Por favor, faça o upload do arquivo CSV para realização das previsões!")
 
 if choice == "Início":
-    st.title("Selecione uma Opção no Menu à Esquerda")
+    st.title("Selecione uma Opção no Menu de navegação.")
+    st.title("\u2190")
     st.write("             ")
     st.write("             ")
     st.write("             ")
