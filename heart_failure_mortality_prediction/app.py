@@ -28,6 +28,12 @@ def prever_morte(creatinina_sérica, fração_injeção, idade, período_acompan
     else:
         st.write('O paciente tem baixa probabilidade de morte')
 
+# Criei uma função para prever a probabilidade de morte de um paciente
+def probabilidade_morte(creatinina_sérica, fração_injeção, idade, período_acompanhamento, sódio_sérico):
+    X = np.array([creatinina_sérica, fração_injeção, idade, período_acompanhamento, sódio_sérico]).reshape(1, -1)
+    res = model.predict_proba(X)
+    st.write('A probabilidade de morte do paciente é de: ', res[0][1]*100, "%")
+
 #Criei o App
 st.title('Previsão de Mortalidade por Insuficiência Cardíaca')
 st.write('Esse app foi desenvolvido para prever a mortalidade de pacientes com insuficiência cardíaca utilizando o modelo de Regressão Logística')
@@ -42,5 +48,6 @@ sódio_sérico = st.number_input('Exame de Sódio Sérico', min_value=0.0, max_v
 
 if st.button('Predict'):
     result = prever_morte(creatinina_sérica, fração_injeção, idade, período_acompanhamento, sódio_sérico)
+    result = probabilidade_morte(creatinina_sérica, fração_injeção, idade, período_acompanhamento, sódio_sérico)
 
 st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')
