@@ -20,8 +20,7 @@ with st.sidebar:
 
 if os.path.exists("data.csv"):
     dataframe = pd.read_csv("data.csv")
-        dataframe = pd.read_csv("data.csv")
-
+    
 if choice == "Upload":
     st.header("Upload de dados (Treino / Teste)")
     st.subheader("Faça o upload do arquivo .csv para análise e modelagem.")
