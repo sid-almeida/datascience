@@ -59,8 +59,8 @@ if choice == "Análise Automatizada":
 if choice == "Análise Manual":
     if os.path.exists("data.csv"):
         dataframe = pd.read_csv("data.csv")
-            if dataframe is not None:
-                gwalker = pyg.walk(dataframe, env="Streamlit", dark='dark')
+        if dataframe is not None:
+            gwalker = pyg.walk(dataframe, env="Streamlit", dark='dark')
     else:
         st.write("Por favor, envie o seus Dados na aba **Upload**"
 
