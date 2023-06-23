@@ -14,12 +14,20 @@ with st.sidebar:
     imglink = 'https://github.com/sid-almeida/datascience/blob/main/UniChurn/Brainize%20Tech(1).png?raw=true'
     st.image(imglink, width=250)
     st.title("UniKeep")
-    choice = st.radio("**Navegação:**", ("Início", "Upload", "Análise", "Machine Learning", "Previsão", "Previsão de Conjunto de Dados"))
+    choice = st.radio("**Navegação:**", ("Início", "Upload", "Análise Automatizada", "Análise Manual", "Machine Learning", "Previsão", "Previsão de Conjunto de Dados"))
     st.info("Esta aplicação permite a análise de dados de uma universidade fictícia, com o objetivo de prever a evasão de alunos."
             " Além disso, ela utiliza Machine Learning para prever o estado futuro de alunos.")
 
 if os.path.exists("data.csv"):
-    dataframe = pd.read_csv("data.csv")
+    dataframe = pd.read_csv("data.csv")if os.path.exists("data.csv"):
+        dataframe = pd.read_csv("data.csv")
+        if dataframe is not None:
+            #abrir pygwalker e fazer a análise no streamlit
+            st.button("Analisar dados")
+            if st.button:
+                gwalker = pyg.walk(dataframe, env="Streamlit", dark='dark')
+                st.success("Análise realizada com sucesso!")
+                st.balloons()
 
 if choice == "Upload":
     st.header("Upload de dados (Treino / Teste)")
@@ -37,7 +45,7 @@ if choice == "Upload":
     else:
         st.warning("Por favor, faça o upload do arquivo .csv.")
 
-if choice == "Análise":
+if choice == "Análise Automatizada":
     st.header("Análise de dados")
     st.subheader("Análise exploratória dos dados com a ferramenta SweetViz.")
     if os.path.exists("data.csv"):
@@ -55,6 +63,14 @@ if choice == "Análise":
             st.warning("Por favor, faça o upload do arquivo .csv.")
     else:
         st.warning("Por favor, faça o upload do arquivo .csv.")
+
+if choice == "Análise Manual":
+    if os.path.exists("data.csv"):
+        dataframe = pd.read_csv("data.csv")
+            if dataframe is not None:
+                gwalker = pyg.walk(dataframe, env="Streamlit", dark='dark')
+    else:
+        st.write("Por favor, envie o seus Dados na aba **Upload**"
 
 if choice == "Machine Learning":
     dataframe = pd.read_csv("data.csv")
