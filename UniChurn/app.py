@@ -21,13 +21,6 @@ with st.sidebar:
 if os.path.exists("data.csv"):
     dataframe = pd.read_csv("data.csv")
         dataframe = pd.read_csv("data.csv")
-        if dataframe is not None:
-            #abrir pygwalker e fazer a análise no streamlit
-            st.button("Analisar dados")
-            if st.button:
-                gwalker = pyg.walk(dataframe, env="Streamlit", dark='dark')
-                st.success("Análise realizada com sucesso!")
-                st.balloons()
 
 if choice == "Upload":
     st.header("Upload de dados (Treino / Teste)")
