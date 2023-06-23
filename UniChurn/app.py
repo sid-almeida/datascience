@@ -19,7 +19,7 @@ with st.sidebar:
             " Além disso, ela utiliza Machine Learning para prever o estado futuro de alunos.")
 
 if os.path.exists("data.csv"):
-    dataframe = pd.read_csv("data.csv")if os.path.exists("data.csv"):
+    dataframe = pd.read_csv("data.csv")
         dataframe = pd.read_csv("data.csv")
         if dataframe is not None:
             #abrir pygwalker e fazer a análise no streamlit
