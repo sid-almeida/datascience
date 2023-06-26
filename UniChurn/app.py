@@ -11,16 +11,15 @@ def st_display_sweetviz(report_html,width=1000,height=500):
     components.html(page,width=width,height=height,scrolling=True)
 
 with st.sidebar:
-    imglink = 'https://github.com/sid-almeida/datascience/blob/main/UniChurn/Brainize%20Tech(1).png?raw=true'
-    st.image(imglink, width=250)
-    st.title("UniKeep")
-    choice = st.radio("**Navegação:**", ("Início", "Upload", "Análise Automatizada", "Análise Manual", "Machine Learning", "Previsão", "Previsão de Conjunto de Dados"))
+    # st.image("Brainize Tech(1).png", width=250)
+    st.title("UniChurn")
+    choice = st.radio("**Navegação:**", ("Upload", "Análise", "Machine Learning", "Previsão"))
     st.info("Esta aplicação permite a análise de dados de uma universidade fictícia, com o objetivo de prever a evasão de alunos."
             " Além disso, ela utiliza Machine Learning para prever o estado futuro de alunos.")
 
 if os.path.exists("data.csv"):
     dataframe = pd.read_csv("data.csv")
-    
+
 if choice == "Upload":
     st.header("Upload de dados (Treino / Teste)")
     st.subheader("Faça o upload do arquivo .csv para análise e modelagem.")
@@ -37,9 +36,9 @@ if choice == "Upload":
     else:
         st.warning("Por favor, faça o upload do arquivo .csv.")
 
-if choice == "Análise Automatizada":
+if choice == "Análise":
     st.header("Análise de dados")
-    st.subheader("Análise exploratória dos dados com a ferramenta SweetViz.")
+    st.subheader("Análise exploratória dos dados com pandas-profiling.")
     if os.path.exists("data.csv"):
         dataframe = pd.read_csv("data.csv")
         if dataframe is not None:
@@ -51,18 +50,10 @@ if choice == "Análise Automatizada":
                 html_file.write(report._page_html)
             st_display_sweetviz("SWEETVIZ_REPORT.html")
             st.balloons()
-        elif dataframe is None:
+        else:
             st.warning("Por favor, faça o upload do arquivo .csv.")
     else:
         st.warning("Por favor, faça o upload do arquivo .csv.")
-
-if choice == "Análise Manual":
-    if os.path.exists("data.csv"):
-        dataframe = pd.read_csv("data.csv")
-        if dataframe is not None:
-            gwalker = pyg.walk(dataframe, env="Streamlit", dark='dark')
-    else:
-        st.write("Por favor, envie o seus Dados na aba **Upload**"
 
 if choice == "Machine Learning":
     dataframe = pd.read_csv("data.csv")
@@ -70,9 +61,9 @@ if choice == "Machine Learning":
     st.subheader("Treino de modelos de Machine Learning para prever a evasão de alunos.")
     problema = st.selectbox("Selecione o problema:", ("Classificação", "Regressão"))
     if problema == "Classificação":
-        modelo = st.selectbox("Selecione o modelo:", (" ", "Logistic Regression", "Random Forest", "XGBoost"))
+        modelo = st.selectbox("Selecione o modelo:", ("Logistic Regression", "Random Forest", "XGBoost"))
     if problema == "Regressão":
-        modelo = st.selectbox("Selecione o modelo:", (" ", "Linear Regression", "Random Forest", "XGBoost"))
+        modelo = st.selectbox("Selecione o modelo:", ("Linear Regression", "Random Forest", "XGBoost"))
         if modelo == "Linear Regression":
             st.warning("AVISO: Este modelo não é adequado para o problema de classificação!")
             # selectbox para selecionar o alvo
@@ -84,8 +75,8 @@ if choice == "Machine Learning":
                 from sklearn.linear_model import LinearRegression
                 from sklearn.model_selection import train_test_split
                 from sklearn.metrics import mean_squared_error
-                X = dataframe.drop(alvo, axis=1)
-                y = dataframe[alvo]
+                X = dataframe.drop('STATUS', axis=1)
+                y = dataframe['STATUS']
                 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
                 model = LinearRegression()
                 model.fit(X_train, y_train)
@@ -101,14 +92,6 @@ if choice == "Machine Learning":
                 pickle.dump(model, open("model.pkl", "wb"))
                 st.success("Modelo salvo com sucesso!")
                 st.balloons()
-    if modelo == " ":
-        st.warning("Por favor, selecione um modelo.")
-    if modelo == "Logistic Regression":
-        st.warning("Por favor, selecione um modelo.")
-    if modelo == "Random Forest":
-        st.warning("Por favor, selecione um modelo.")
-    if modelo == "XGBoost":
-        st.warning("Por favor, selecione um modelo.")
     if modelo == "Logistic Regression":
         st.warning("Este modelo não é adequado para o problema de regressão.")
         # selectbox para selecionar o alvo
@@ -120,14 +103,14 @@ if choice == "Machine Learning":
             from sklearn.linear_model import LogisticRegression
             from sklearn.model_selection import train_test_split
             from sklearn.metrics import accuracy_score
-            X = dataframe.drop(alvo, axis=1)
-            y = dataframe[alvo]
+            X = dataframe.drop('STATUS', axis=1)
+            y = dataframe['STATUS']
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
             model = LogisticRegression()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.subheader("**Avaliação do Modelo**")
-            st.write("Acurácia:", accuracy_score(y_test, y_pred)*100,"%")
+            st.write("Acurácia:", accuracy_score(y_test, y_pred))
             st.success("Modelo treinado com sucesso!")
         # botão para salvar o modelo
         st.button("Salvar modelo")
@@ -136,7 +119,6 @@ if choice == "Machine Learning":
             pickle.dump(model, open("model.pkl", "wb"))
             st.success("Modelo salvo com sucesso!")
             st.balloons()
-            
     elif modelo == "Random Forest":
         # selectbox para selecionar o alvo
         alvo = st.selectbox("Selecione o alvo: ", dataframe.columns)
@@ -147,14 +129,14 @@ if choice == "Machine Learning":
             from sklearn.ensemble import RandomForestClassifier
             from sklearn.model_selection import train_test_split
             from sklearn.metrics import accuracy_score
-            X = dataframe.drop(alvo, axis=1)
-            y = dataframe[alvo]
+            X = dataframe.drop('STATUS', axis=1)
+            y = dataframe['STATUS']
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
             model = RandomForestClassifier()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.subheader("**Avaliação do Modelo**")
-            st.write("Acurácia:", accuracy_score(y_test, y_pred)*100,"%")
+            st.write("Acurácia:", accuracy_score(y_test, y_pred))
             st.success("Modelo treinado com sucesso!")
         # botão para salvar o modelo
         st.button("Salvar modelo")
@@ -173,14 +155,14 @@ if choice == "Machine Learning":
             from xgboost import XGBClassifier
             from sklearn.model_selection import train_test_split
             from sklearn.metrics import accuracy_score
-            X = dataframe.drop(alvo, axis=1)
-            y = dataframe[alvo]
+            X = dataframe.drop('STATUS', axis=1)
+            y = dataframe['STATUS']
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
             model = XGBClassifier()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.subheader("**Avaliação do Modelo**")
-            st.write("Acurácia:", accuracy_score(y_test, y_pred)*100,"%")
+            st.write("Acurácia:", accuracy_score(y_test, y_pred))
             st.success("Modelo treinado com sucesso!")
         # botão para salvar o modelo
         st.button("Salvar modelo")
@@ -189,6 +171,7 @@ if choice == "Machine Learning":
             pickle.dump(model, open("model.pkl", "wb"))
             st.success("Modelo salvo com sucesso!")
             st.balloons()
+
 
 if choice == "Previsão":
     st.header("Previsão do estado dos alunos")
@@ -199,7 +182,6 @@ if choice == "Previsão":
             "9 - Gestão 10 - Serviço Social 11 - Turismo 12 - Enfermagem 13 - Higiene Oral 14 - Publicidade "
             "15 - Jornalismo e Comunicação 16 - Letras 17 - Administração de Empresas")
     turno = st.selectbox("Turno", (0, 1))
-    st.info("0 - Noturno 1 - Diurno")
     qualificacao_previa = st.selectbox("Qualificação prévia", (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))
     st.info("1 - Educação secundária 2 - Ensino superior - bacharelado 3 - Ensino superior - licenciatura "
             "4 - Ensino superior - mestrado 5 - Ensino superior - doutorado 6 - Frequência de ensino superior "
@@ -218,17 +200,17 @@ if choice == "Previsão":
     st.info("0 - Não 1 - Sim")
     mensalidade_em_dia = st.selectbox("Mensalidade em dia", (0, 1))
     st.info("0 - Não 1 - Sim")
-    sexo = st.selectbox("Sexo", (0, 1))
-    st.info("0 - Mulher 1 - Homem")
+    sexo = st.selectbox("Gênero", (0, 1))
+    st.info("0 - Feminino 1 - Masculino")
     bolsista = st.selectbox("Bolsista", (0, 1))
     st.info("0 - Não 1 - Sim")
     aprovacoes = st.number_input("Aprovações", min_value=0, max_value=100, value=0, step=1)
     aproveitamentos = st.number_input("Aproveitamentos", min_value=0, max_value=100, value=0, step=1)
     matriculas = st.number_input("Turmas matriculadas", min_value=0.0, max_value=100.0, value=0.0, step=1.0)
     media = st.number_input("Média anual", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
-    indice_desemprego = st.number_input("Índice de desemprego %", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
-    indice_inflacao = st.number_input("Índice de inflação %", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
-    PIB = st.number_input("PIB (Trilhões $)", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
+    indice_desemprego = st.number_input("Índice de desemprego", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
+    indice_inflacao = st.number_input("Índice de inflação", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
+    PIB = st.number_input("PIB", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
 
  
 
@@ -251,74 +233,21 @@ if choice == "Previsão":
                                    indice_inflacao, 
                                    PIB]])
         if prediction == 0:
-            st.subheader("O aluno tem **grandes** chances de evasão")
-            #probabilidade de evadir
-            prob = model.predict_proba([[curso, turno, qualificacao_previa, nacionalidade, necessidades_especiais,
-                                     mensalidade_em_dia, sexo, bolsista, aprovacoes, aproveitamentos, matriculas,
-                                     media, indice_desemprego, indice_inflacao, PIB]])
-            # % de chance de evadir
-            st.write("Probabilidade de evasão: ", prob[0][0]*100, "%")
-
-        else:
-            st.subheader("O aluno tem grandes chances de **concluir** o curso")
+            st.subheader("O aluno tem **grandes** chances de se formar curso")
             #probabilidade de se formar
             prob = model.predict_proba([[curso, turno, qualificacao_previa, nacionalidade, necessidades_especiais,
                                      mensalidade_em_dia, sexo, bolsista, aprovacoes, aproveitamentos, matriculas,
                                      media, indice_desemprego, indice_inflacao, PIB]])
+            st.write("Probabilidade de se formar: ", prob[0][0])
             # % de chance de se formar
-            st.write("Probabilidade de sucesso: ", prob[0][1]*100, "%")
+            st.write("Chance de se formar: ", prob[0][0]*100, "%")
 
-if choice == "Previsão de Conjunto de Dados":
-    st.header("Previsão de Conjunto de Dados em CSV")
-    st.subheader("Faça o upload do arquivo CSV")
-    st.info("O arquivo deve conter as colunas: curso, turno, qualificacao_previa, "
-            "nacionalidade, necessidades_especiais, mensalidade_em_dia, sexo, bolsista, "
-            "aprovacoes, aproveitamentos, matriculas, media, indice_desemprego, "
-            "indice_inflacao, PIB e a ordem das colunas deve ser a mesma do treino.")
-    data_conj = st.file_uploader("Upload CSV", type=["csv"])
-    if data_conj is not None:
-        dfp = pd.read_csv(data_conj, index_col=0)
-        st.dataframe(dfp.head())
-        st.subheader("Selecione as colunas alvo")
-        colunas_selecionadas = st.multiselect("Colunas", dfp.columns)
-        st.info("Selecione as colunas para prever a evasão dos alunos")
-        if st.button("Prever"):
-            import pickle
-            model = pickle.load(open("model.pkl", "rb"))
-            prediction = model.predict(dfp[colunas_selecionadas])
-            prob = model.predict_proba(dfp[colunas_selecionadas])
-            dfp["Previsão"] = prediction
-            dfp["Probabilidade de Sucesso (%)"] = prob[:,1] * 100
-            st.dataframe(dfp)
-            result = dfp
-            #botão para download do arquivo csv com as previsões para a pasta Downloads
-            if st.download_button(label="Download CSV", data=dfp.to_csv(), file_name="previsoes.csv", mime="text/csv"):
-                st.success("Download realizado com sucesso!")
-                st.balloons()
-    else:
-        st.warning("Por favor, faça o upload do arquivo CSV para realização das previsões!")
-
-if choice == "Início":
-    st.title("Selecione uma Opção no Menu de navegação.")
-    st.title("\u27F5")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.subheader("Obrigado por utilizar o nosso sistema! \u2764 ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-    st.write("             ")
-        
-st.write('Made with ❤️ by [Sidnei Almeida](https://www.linkedin.com/in/saaelmeida93/)')
+        else:
+            st.subheader("O aluno tem grandes chances de **não** se formar no curso")
+            #probabilidade de não se formar
+            prob = model.predict_proba([[curso, turno, qualificacao_previa, nacionalidade, necessidades_especiais,
+                                     mensalidade_em_dia, sexo, bolsista, aprovacoes, aproveitamentos, matriculas,
+                                     media, indice_desemprego, indice_inflacao, PIB]])
+            st.write("Probabilidade de evasão: ", prob[0][1])
+            # % de chance de não se formar
+            st.write("Chance de evasão: ", prob[0][1]*100, "%")
