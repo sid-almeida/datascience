@@ -5,7 +5,7 @@ import pickle
 import os
 
 # Load the model from the file
-with open('model.pkl', 'rb') as f:
+with open('https://github.com/sid-almeida/datascience/blob/4c9ab0608fb3ba8e3a6277f85f73ef8c84b5a41f/bankruptcy_prediction/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Verifiquei se existe um arquivo de dados no diretório do sistema
