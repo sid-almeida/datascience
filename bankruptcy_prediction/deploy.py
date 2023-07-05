@@ -17,11 +17,11 @@ if os.path.isfile('data.csv'):
 else:
     df = pd.read_csv('https://raw.githubusercontent.com/saaelmeida/UniChurn/main/data.csv')
     # Salvei o arquivo de dados no diretório do sistema
-    df.to_csv('data.csv', index=False)
+    df.to_csv('https://raw.githubusercontent.com/sid-almeida/datascience/main/bankruptcy_prediction/data.csv', index=False)
 
 # Create a sidebar header
 with st.sidebar:
-    st.image("Brainize Tech.png", width=250)
+    st.image("https://github.com/sid-almeida/datascience/blob/main/bankruptcy_prediction/Brainize%20Tech.png?raw=true", width=250)
     st.title("UniChurn")
     choice = st.radio("**Navegação:**", ("About", "Batch Prediction"))
     st.info('**Note:** Please be aware that this application is intended solely for educational purposes. It is strongly advised against utilizing this tool for making any financial decisions.')
