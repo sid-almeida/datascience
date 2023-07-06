@@ -4,21 +4,17 @@ import pickle
 import os
 
 # Load the model from the file if it exists if not then train the model and save it to the file
-if os.path.isfile('model.pkl'):
-    with open('model.pkl', 'rb') as f:
-        model = pickle.load(f)
-else:
-    # train the model rfc and save it to the file
-    df = pd.read_csv('https://raw.githubusercontent.com/sid-almeida/datascience/main/bankruptcy_prediction/data.csv')
-    X = df.drop('Bankrupt?', axis=1)
-    y = df['Bankrupt?']
-    from sklearn.ensemble import RandomForestClassifier
-    rfc = RandomForestClassifier()
-    rfc.fit(X, y)
-    # Save the model to the file in the directory
-    with open('model.pkl', 'wb') as f:
-        pickle.dump(rfc, f)
-        model = pickle.load(f)
+# train the model rfc and save it to the file
+df = pd.read_csv('https://raw.githubusercontent.com/sid-almeida/datascience/main/bankruptcy_prediction/data.csv')
+X = df.drop('Bankrupt?', axis=1)
+y = df['Bankrupt?']
+from sklearn.ensemble import RandomForestClassifier
+rfc = RandomForestClassifier()
+rfc.fit(X, y)
+# Save the model to the file in the directory
+with open('model.pkl', 'wb') as f:
+    pickle.dump(rfc, f)
+    model = pickle.load(f)
 
 
 # Verifiquei se existe um arquivo de dados no diretório do sistema
