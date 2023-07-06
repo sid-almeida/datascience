@@ -9,7 +9,7 @@ if os.path.isfile('model.pkl'):
         model = pickle.load(f)
 else:
     # train the model rfc and save it to the file
-    df = pd.read_csv('https://raw.githubusercontent.com/saaelmeida/UniChurn/main/data.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/sid-almeida/datascience/main/bankruptcy_prediction/data.csv')
     X = df.drop('Bankrupt?', axis=1)
     y = df['Bankrupt?']
     from sklearn.ensemble import RandomForestClassifier
@@ -26,13 +26,13 @@ else:
 if os.path.isfile('data.csv'):
     df = pd.read_csv('data.csv')
 else:
-    df = pd.read_csv('https://raw.githubusercontent.com/saaelmeida/UniChurn/main/data.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/sid-almeida/datascience/main/bankruptcy_prediction/data.csv')
     # Salvei o arquivo de dados no diretório do sistema
     df.to_csv('data.csv', index=False)
 
 # Create a sidebar header
 with st.sidebar:
-    st.image("Brainize Tech.png", width=250)
+    st.image("https://github.com/sid-almeida/datascience/blob/main/bankruptcy_prediction/Brainize%20Tech.png?raw=true", width=250)
     st.title("Bankruptcy Prediction")
     choice = st.radio("**Navegação:**", ("About", "Batch Prediction"))
     st.info('**Note:** Please be aware that this application is intended solely for educational purposes. It is strongly advised against utilizing this tool for making any financial decisions.')
