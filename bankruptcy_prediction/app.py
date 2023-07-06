@@ -12,7 +12,7 @@ from sklearn.ensemble import RandomForestClassifier
 rfc = RandomForestClassifier()
 rfc.fit(X, y)
 # Save the model to the file in the directory
-with open('model.pkl', 'wb') as f:
+with open('https://github.com/sid-almeida/datascience/tree/50bf7a0063a6199f246986b3d61645f37d8f169f/bankruptcy_prediction', 'wb') as f:
     pickle.dump(rfc, f)
     model = pickle.load(f)
 
